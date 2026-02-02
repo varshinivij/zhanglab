@@ -1,0 +1,12 @@
+Zero shot classification: allows the model to classify the input as a specific label, 
+without any prior training on those specific labels
+
+Requires a deeper understanding of the context and description of the classes from NLP.
+(Aka, understands that a zebra is a stripped four legged animal)
+
+Understands patterns in images
+(Learns what a stripped animal may look like)
+
+Hence, when given an image of a zebra, whose labels or images it may not have recieved during training, it is able to classify it.
+Zero-shot is possible because knowledge is compositional
+
