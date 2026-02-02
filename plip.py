@@ -26,15 +26,26 @@ def classify(img_file, labels):
     # best_label = max(results, key=lambda x: x['score'])
     return out, results
 
+def parse_out(file_name):
+    annotations_csv = Path("/Users/varshinivijay/Downloads/histopathology_images") / "annotations.csv"
+    with open(annotations_csv, 'r') as f:
+        name = None
+        while name != file_name:
+            line = f.readline()
+            name = line.strip().split(',')[0]
+        line = f.readline()
+        target = line.strip().split(',')[1]
+    return target
+
+        
 def process_dir():
     for file_path in DIR_PATH.iterdir():
         if file_path.is_file():
             try:
                 with file_path.open('r') as f:
-                    classify(file_path, labels)
+                    classify(file_path, ["Hyperplastic Polyp", "Sessile Serrated Adenoma"])
             except IOError as e:
                 print(f"An error occurred with your file:{e}")
 
 if __name__ == "__main__":
-    out, results = classify("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/parrots.png", ["Hyperplastic Polyp", "Sessile Serrated Adenoma"])
-    print(out)
+    
