@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from PIL import Image
+import pickle
 
 from sklearn.linear_model import SGDClassifier
 from torch.utils.data import Dataset, DataLoader
@@ -74,12 +75,14 @@ train_y = train_dataset["label"].tolist()
 
 def run_study(model_name, cache_dir=cache_dir):
     if model_name == "plip":
+        # if your file is a pickle
+        with open("plip.pkl", "rb") as f:
+            state_dict = pickle.load(f)
         model, preprocess = clip.load("ViT-B/32", device=device, download_root=cache_dir)
-        model.load_state_dict(torch.load(plip_path))#creates the model architecture and adds the specific weights
+        model.load_state_dict(state_dict)#creates the model architecture and adds the specific weights
     elif model_name == "clip":
         model, preprocess = clip.load("ViT-B/32", device=device, download_root=cache_dir)
     elif model_name == "mudipath": 
-        
         model = build_densenet(download_dir=cache_dir,
                                       pretrained="mtdp")
         model.num_feats = model.n_features()
