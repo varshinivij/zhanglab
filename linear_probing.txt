@@ -1,6 +1,0 @@
-Linear probing occurs to test the quality of learned representations from the model.
-The models weights are frozen and a simple linear classifier is trained on top.
-If a linear layer is enough, then the model is strong enough standalone.
-
-Example: self-supervised training on images, and then the feature representations are extracted from the second last layer.
-10 specific classes are trained on a new classifer using the feature representations.

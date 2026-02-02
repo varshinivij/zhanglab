@@ -15,6 +15,7 @@ data_folder = "/path/to/data"
 cache_dir = "/cache"
 device="cpu"
 
+
 #given images, we return the tensor representation of the image 
 class CLIPImageDataset(Dataset):
     def __init__(self, list_of_images, preprocessing):
